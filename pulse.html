@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codespec - Pulse</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Center the button on the page */
+        .pulse-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+        }
+        
+        /* Pulsing animation */
+        .pulse-button {
+            animation: gentle-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes gentle-pulse {
+            0% { 
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+            }
+            100% { 
+                box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+            }
+        }
+    </style>
+</head>
+<body class="theme theme--default">
+    <script>
+        let body = document.querySelector("body");
+        let cachedThemeClass = localStorage.getItem("cs-theme", null);
+        if (cachedThemeClass) {
+            body.classList.add(cachedThemeClass);
+            localStorage.setItem("cs-theme", cachedThemeClass);
+        } else {
+            body.classList.add("theme--default");
+        }
+    </script>
+    
+    <div class="base-wrapper base" data-target="main-wrapper">
+        <main id="main" role="main" class="">
+            <div class="pulse-container">
+                <button class="cs-btn--primary pulse-button">New Problem</button>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
